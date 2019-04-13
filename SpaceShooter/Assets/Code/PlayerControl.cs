@@ -10,10 +10,23 @@ public class PlayerControl : MonoBehaviour
     Vector3 vec;
     public float karakterHiz;
     public float minX,maxX,minZ,maxZ,egim;
+    float atesZamani = 0;
+    public float atesGecikme;
+    public GameObject Kursun;
+    public Transform KursunCikis;
 
     void Start()
     {
         fizik = GetComponent<Rigidbody>();
+    }
+
+    void Update()
+    {
+        if (Input.GetButton("Fire1") && Time.time>atesZamani)
+        {
+            atesZamani = Time.time + atesGecikme;
+            Instantiate(Kursun, KursunCikis.position,Quaternion.identity);
+        }
     }
 
 
