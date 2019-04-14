@@ -14,10 +14,13 @@ public class PlayerControl : MonoBehaviour
     public float atesGecikme;
     public GameObject Kursun;
     public Transform KursunCikis;
+    AudioSource audio;
+
 
     void Start()
     {
         fizik = GetComponent<Rigidbody>();
+        audio = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -26,6 +29,7 @@ public class PlayerControl : MonoBehaviour
         {
             atesZamani = Time.time + atesGecikme;
             Instantiate(Kursun, KursunCikis.position,Quaternion.identity);
+            audio.Play();
         }
     }
 
