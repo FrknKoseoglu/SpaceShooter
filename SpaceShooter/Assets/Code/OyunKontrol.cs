@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OyunKontrol : MonoBehaviour
 {
@@ -8,9 +9,12 @@ public class OyunKontrol : MonoBehaviour
     public Vector3 randomPos;
     public float baslangicBekleme, olusturmaBekleme, donguBekleme;
     int score;
-    
+
+    public Text text; 
     void Start()
     {
+        score = 0;
+        text.text = "score = " + score; 
        StartCoroutine( olustur()); 
     }
     IEnumerator olustur()
@@ -31,7 +35,10 @@ public class OyunKontrol : MonoBehaviour
     public void ScoreArttir(int gelenScore)
 
     {
-        score = gelenScore
+        score += gelenScore;
+        text.text = "score =" + score;
+
+
  
     }
 }
