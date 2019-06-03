@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class OyunKontrol : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class OyunKontrol : MonoBehaviour
     public Vector3 randomPos;
     public float baslangicBekleme, olusturmaBekleme, donguBekleme;
     int score;
+    bool GameOverControl = false;
+    bool restartControl = false;
 
     public Text text; 
     void Start()
@@ -17,6 +20,15 @@ public class OyunKontrol : MonoBehaviour
         text.text = "score = " + score; 
        StartCoroutine( olustur()); 
     }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.R) && restartControl)
+        {
+            SceneManager.LoadScene("Level 1");
+        }
+    }
+
     IEnumerator olustur()
     {
         yield return new WaitForSeconds(baslangicBekleme);
@@ -29,6 +41,12 @@ public class OyunKontrol : MonoBehaviour
             yield return new WaitForSeconds(olusturmaBekleme);
         }
             yield return new WaitForSeconds(olusturmaBekleme);
+
+            if(GameOverControl)
+            {
+                restartControl = true;
+                break;
+            }
         }
     }
 
@@ -38,7 +56,10 @@ public class OyunKontrol : MonoBehaviour
         score += gelenScore;
         text.text = "score =" + score;
 
+    }
 
- 
+    public void GameOver()
+    {
+        GameOverControl = true;
     }
 }

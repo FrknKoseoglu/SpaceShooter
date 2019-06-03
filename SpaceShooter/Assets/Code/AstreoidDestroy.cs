@@ -27,6 +27,7 @@ public class AstreoidDestroy : MonoBehaviour
         if (col.tag != "sinir")
         {
             Instantiate(playerPatlama, col.transform.position, col.transform.rotation);
+            kontrol.GameOver();
         }
 
 
